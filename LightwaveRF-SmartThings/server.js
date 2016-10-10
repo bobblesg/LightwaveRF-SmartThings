@@ -27,6 +27,11 @@ router.register('/moodOff', function (req, res) {
     helpers.lwrfMoodOff(1, req, res);
 });
 
+router.register('/roomOff', function (req, res) {
+    console.log('Room off request received');
+    helpers.lwrfRoomOff(req, res);
+});
+
 var server = http.createServer(function (req, res) {
 	handler = router.route(req);
 	handler.process(req, res);

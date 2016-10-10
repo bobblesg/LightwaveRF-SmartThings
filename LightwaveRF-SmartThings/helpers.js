@@ -42,11 +42,11 @@ exports.lwrfMoodOn = function (req, res) {
 
     lwrf.turnRoomMoodOn(params.room, params.mood);
 
-    httpResponse(res, 'Request Received');
+    httpResponse(res, 'Mood on request received');
 
 };
 
-// START LIGHTWAVE DEVICE ROOM MOOD
+// TURN OFF LIGHTWAVE ROOM
 exports.lwrfRoomOff = function (req, res) {
 
     var params = getURLParams(req);
@@ -55,7 +55,7 @@ exports.lwrfRoomOff = function (req, res) {
 
     lwrf.turnRoomOff(params.room);
 
-    httpResponse(res, 'Request Received');
+    httpResponse(res, 'Room off request received');
 
 };
 

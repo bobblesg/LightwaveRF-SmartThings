@@ -36,6 +36,7 @@
     <Compile Include="router.js" />
     <Compile Include="server.js" />
     <Content Include="dimmerDevice.groovy" />
+    <Content Include="onOffRoomy.groovy" />
     <Content Include="onOffMood.groovy" />
     <Content Include="onOffDevice.groovy" />
     <Content Include="package.json" />
