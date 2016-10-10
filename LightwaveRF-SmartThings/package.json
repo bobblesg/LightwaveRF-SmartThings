@@ -1,0 +1,9 @@
+{
+  "name": "lightwave-rf-smart-things",
+  "version": "0.0.0",
+  "description": "LightwaveRF-SmartThings",
+  "main": "server.js",
+  "author": {
+    "name": "leigh"
+  }
+}
