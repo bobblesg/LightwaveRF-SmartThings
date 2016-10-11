@@ -153,25 +153,23 @@ LightwaveRF.prototype.setDeviceDim = function(roomId, deviceId, dimPercentage , 
     }
 };
 
-
-
-////
-
-
-// added by Leigh - not yet tested
-// need to expose these in the API
+/**
+ * Turn on the mood in a given room
+ * Note: Specifying Mood 0 switches off all devices connected to the room (Master Mood 0)
+ *          Specifying Mood 5 switches on all devices connected to the room (Master Mood I)
+ *
+ * @param integer  roomId        The room ID
+ * @param integer  moodId        The mood ID
+ * @param Function callback      The callback for if there are any errors
+ *
+ * @return void
+ */
 
 
 LightwaveRF.prototype.turnRoomMoodOn = function (roomId, moodId, callback) {
 
-    // To Set the additional Moods I found though a lot of trial and error the codes are
-    // !R2FmP0 to set the mood associated with the button marked 0 on the master mood switch
-    // !R2FmP5 to set the mood associated with the button marked I on the master mood switch
-
-    this.exec("!R" + roomId + "FsP" + moodId  + "|\0", callback);
+    this.exec("!R" + roomId + "FmP" + moodId  + "|\0", callback);
 };
-
-
 
 
 /**
@@ -222,6 +220,7 @@ LightwaveRF.prototype.sendUdp = function(message){
     var sendSocket = this.sendSocket;
     var ip = this.config.ip;
     var attemptNumber = 1;
+    var timeOut = 500;
 
     this.responseListeners[parseInt(code, 10).toString()] = {
         time: new Date().getTime(),
@@ -232,13 +231,21 @@ LightwaveRF.prototype.sendUdp = function(message){
 
     stateTimer[code] = setInterval(function() {
 
-        console.log("Attempt " + attemptNumber + " - Sending message: " + message);
+        if (attemptNumber < 5) {
+            console.log("Attempt " + attemptNumber + " - Sending message: " + message);
 
-        sendSocket.send(buffer, 0, buffer.length, 9760, ip);
+            sendSocket.send(buffer, 0, buffer.length, 9760, ip);
 
-        attemptNumber++;
+            attemptNumber++;
+            timeOut = timeOut * 10;
+            console.log(timeOut);
 
-    }, 500);
+        } else {
+            // tried enough times, prevent a flood of alerts
+            clearInterval(stateTimer[code]);
+        }
+
+    }, timeOut);
 
 };
 

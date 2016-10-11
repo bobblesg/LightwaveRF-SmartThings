@@ -36,6 +36,9 @@ exports.lwrfToggle = function (toggle, req, res) {
 // START LIGHTWAVE DEVICE ROOM MOOD
 exports.lwrfMoodOn = function (req, res) {
 
+    if (req == undefined) return false;
+    if (res == undefined) return false;
+
     var params = getURLParams(req);
 
     lwrf.setIP(params.ip);
@@ -49,13 +52,20 @@ exports.lwrfMoodOn = function (req, res) {
 // TURN OFF LIGHTWAVE ROOM
 exports.lwrfRoomOff = function (req, res) {
 
-    var params = getURLParams(req);
+    if (req != undefined) {
 
-    lwrf.setIP(params.ip);
+        var params = getURLParams(req);
 
-    lwrf.turnRoomOff(params.room);
+        lwrf.setIP(params.ip);
 
-    httpResponse(res, 'Room off request received');
+        lwrf.turnRoomOff(params.room);
+
+        //httpResponse(res, 'Room off request received');
+    } else {
+
+        httpResponse(res, 'Room off Error');
+
+    }
 
 };
 

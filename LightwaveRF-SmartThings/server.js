@@ -23,7 +23,9 @@ router.register('/moodOn', function (req, res) {
 });
 
 router.register('/roomOff', function (req, res) {
-    console.log('Room off request received');
+    //console.log('Room off request received');
+    console.log(req);
+    console.log(res);
     helpers.lwrfRoomOff(req, res);
 });
 
