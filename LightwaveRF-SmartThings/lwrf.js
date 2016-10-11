@@ -168,25 +168,6 @@ LightwaveRF.prototype.turnRoomMoodOn = function (roomId, moodId, callback) {
     // !R2FmP0 to set the mood associated with the button marked 0 on the master mood switch
     // !R2FmP5 to set the mood associated with the button marked I on the master mood switch
 
-    this.exec("!R" + roomId + "FmP" + moodId + "|\0", callback);
-};
-
-LightwaveRF.prototype.turnRoomMoodOff = function (roomId, moodId, callback) {
-
-    // To Set the additional Moods I found though a lot of trial and error the codes are
-    // !R2FmP0 to set the mood associated with the button marked 0 on the master mood switch
-    // !R2FmP5 to set the mood associated with the button marked I on the master mood switch
-
-    var state = 0; // State to turn a mood off
-    this.exec("!R" + roomId + "F" + moodId + "P" + state + "|\0", callback);
-};
-
-LightwaveRF.prototype.setRoomMood = function (roomId, moodId, callback) {
-
-    // To Set the additional Moods I found though a lot of trial and error the codes are
-    // !R2FmP0 to set the mood associated with the button marked 0 on the master mood switch
-    // !R2FmP5 to set the mood associated with the button marked I on the master mood switch
-
     this.exec("!R" + roomId + "FsP" + moodId  + "|\0", callback);
 };
 

@@ -24,7 +24,7 @@ preferences {
 }
  
 metadata {
-    definition (name: "Lightwave On Off Room", namespace: "smartthings-users", author: "Adam Clark") {
+    definition (name: "Lightwave Room Off", namespace: "smartthings-users", author: "Adam Clark") {
         capability "Switch"
         command "register"
     }

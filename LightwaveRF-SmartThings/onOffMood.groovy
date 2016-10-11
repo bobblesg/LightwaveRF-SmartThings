@@ -25,7 +25,7 @@ preferences {
 }
  
 metadata {
-    definition (name: "Lightwave On Off Mood", namespace: "smartthings-users", author: "Adam Clark") {
+    definition (name: "Lightwave Mood On", namespace: "smartthings-users", author: "Adam Clark") {
         capability "Switch"
         command "register"
     }
@@ -65,7 +65,7 @@ def on() {
 
 def off() {
     sendEvent(name: "switch", value: 'off')
-    apiGet('/moodOff', 0)
+    apiGet('/moodOn', 0)
 }
 
 def register() {
